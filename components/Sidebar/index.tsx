@@ -1,15 +1,6 @@
 import NextImage from "next/image";
-import NextLink from "next/link";
-import {
-  Box,
-  List,
-  ListItem,
-  Divider,
-  Center,
-  LinkBox,
-  LinkOverlay,
-  ListIcon,
-} from "@chakra-ui/react";
+import { List } from "./List";
+import { Box, Divider } from "@chakra-ui/react";
 import React from "react";
 import {
   MdHome,
@@ -27,6 +18,11 @@ const navMenu = [
   { name: "Library", icon: MdLibraryMusic, route: "/library" },
 ];
 
+const musicMenu = [
+  { name: "Create Playlist", icon: MdPlaylistAdd, route: "/" },
+  { name: "Fabourites", icon: MdFavorite, route: "/favourites" },
+];
+
 export const Sidebar = () => {
   return (
     <Box w="100%" h="calc(100vh - 100px)" bg="black" color="gray" px="5px">
@@ -36,20 +32,11 @@ export const Sidebar = () => {
         </Box>
         {/* navlinks  */}
         <Box mb="20px">
-          <List spacing={4}>
-            {navMenu.map((item) => (
-              <ListItem px="20px" fontSize="16px" key={item.name}>
-                <LinkBox>
-                  <NextLink href={item.route} passHref>
-                    <LinkOverlay>
-                      <ListIcon as={item.icon} color="white" mr="20px" />
-                      {item.name}
-                    </LinkOverlay>
-                  </NextLink>
-                </LinkBox>
-              </ListItem>
-            ))}
-          </List>
+          <List items={navMenu} />
+        </Box>
+        <Divider my="20px" color="gray.700"></Divider>
+        <Box mb="20px">
+          <List items={musicMenu} />
         </Box>
       </Box>
     </Box>
